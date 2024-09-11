@@ -8,9 +8,6 @@
 
     grid-column-start: 0;
     grid-column-end: 2;
-
-    border-color: rgb(255, 54, 54);
-    border-style: solid;
 }
 
 .logo{
@@ -21,8 +18,8 @@
 }
 
 .icon{
-    width: 43px;
-    height: 40px;
+    width: 33px;
+    height: 30px;
 }
 
 .group{
@@ -33,4 +30,34 @@
     background-color: rgba(255, 255, 255, 0);
 
     margin-bottom: 30px;
+}
+
+.tweetBtn{
+    width: 300px;
+    height: 55px;
+
+    border-radius: 30px;
+
+    background-color: #0fb0f5;
+    color: white;
+
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.075);
+}
+
+.tweetBtn:focus{
+    outline: none;
+}
+
+.tweetBtn:hover{
+    border-color: rgba(255, 255, 255, 0);
+
+    background-color: #0ba4e6;
+}
+
+.group:focus{
+    outline: none;
+}
+
+.group:hover{
+    border-color: rgba(245, 222, 179, 0);
 }
