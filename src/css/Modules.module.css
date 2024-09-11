@@ -1,0 +1,36 @@
+
+
+.body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+
+    grid-column-start: 0;
+    grid-column-end: 2;
+
+    border-color: rgb(255, 54, 54);
+    border-style: solid;
+}
+
+.logo{
+    width: 50px;
+    height: 40px;
+
+    margin-top: 20px;
+}
+
+.icon{
+    width: 43px;
+    height: 40px;
+}
+
+.group{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    background-color: rgba(255, 255, 255, 0);
+
+    margin-bottom: 30px;
+}

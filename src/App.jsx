@@ -1,5 +1,6 @@
-import larry from '../src/assets/logos/larry.png'
-import github from '../src/assets/logos/github.png'
+import larry from './assets/logos/larry.png'
+import github from './assets/logos/github.png'
+import { Link } from 'react-router-dom'
 import './App.css'
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       </form>
       <button>Forget Password</button>
       <p>
-        Don't Have an account<a>Sign up</a>
+        Don't Have an account? <Link to='sign-up'>sign_up</Link>
       </p>
     </div>
   )
