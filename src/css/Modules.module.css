@@ -3,7 +3,6 @@
 .body{
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 100px;
 
     grid-column-start: 0;
@@ -14,12 +13,29 @@
     width: 50px;
     height: 40px;
 
-    margin-top: 20px;
+    margin-top: 50px;
+    margin-left: 50px;
 }
 
 .icon{
-    width: 33px;
-    height: 30px;
+    width: 36px;
+    height: 36px;
+
+    color: #0ba4e6;
+
+    border-radius: 100%;
+}
+
+.bluegroup{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    background-color: rgba(255, 255, 255, 0);
+    color: #0fb0f5;
+
+    margin-bottom: 30px;
+    margin-left: 40px;
 }
 
 .group{
@@ -30,6 +46,7 @@
     background-color: rgba(255, 255, 255, 0);
 
     margin-bottom: 30px;
+    margin-left: 40px;
 }
 
 .tweetBtn{
@@ -42,6 +59,8 @@
     color: white;
 
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.075);
+
+    margin-left: 30px;
 }
 
 .tweetBtn:focus{

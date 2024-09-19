@@ -4,7 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App'
 import SignUp from './modules/SignUp'
 import Home from './modules/Home'
+import HomeDisplay from './modules/displays/modules/HomeDisplay'
+import ExplorerDisplay from './modules/displays/modules/ExplorerDisplay'
+import Notifications from './modules/displays/modules/Notifications'
 import './index.css'
+import TweetPage from './modules/TweetPage'
 
 const router = createBrowserRouter([
   {
@@ -16,13 +20,20 @@ const router = createBrowserRouter([
     element: <SignUp />,
   },
   {
-    path: "home",
-    element: <Home />
+    path: "feed",
+    element: <Home />,
+    children: [
+      {path: 'home', element: <HomeDisplay />},
+      {path: 'explore', element: <ExplorerDisplay />},
+      {path: 'notifications', element: <Notifications />},
+    ]
+  },
+  {
+    path: 'post',
+    element: <TweetPage />,
   }
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <RouterProvider router={router}/>
-  </StrictMode>
 )
