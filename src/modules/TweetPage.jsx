@@ -5,11 +5,13 @@ import style from '../css/TweetPage.module.css'
 const clickHandler = async () => {
     const result = await fetch("http://localhost:3000/api/v1/posts", {
         method: 'post',
-        headers: { "Content-Type": "application/json" },
-        body:{
-            text: document.getElementById('text').textContent,
+        headers: { "Content-Type": "application/json",
+                   "Authorization": "Bearer " + localStorage.getItem("accessToken")
+         },
+        body: JSON.stringify({
+            text: document.getElementById('text').value,
             img: ''
-        }
+        })
     }).then(async res => {
         const a = await res.json()
         return a.message;
@@ -26,11 +28,11 @@ function TweetPage() {
         <>
             <div className={style.tweetbox}>
                 <img src={larry} className={style.img} alt="" />
-                <textarea name="" className={style.textarea} placeholder='Type here'></textarea>
+                <textarea name="" className={style.textarea} id='text' placeholder='Type here'></textarea>
                 <button className={style.button} onClick={async () => {
                     const result = await clickHandler();
                     if(result)
-                        navigate('feed')
+                        navigate('/feed')
                 }}>Tweet</button>
                 <Link to='/feed'>
                 <button className={style.button}>Cancel</button>
