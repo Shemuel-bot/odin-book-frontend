@@ -1,0 +1,98 @@
+.post{
+    display: flex;
+    flex-direction: column;
+
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: rgba(224, 224, 224, 0.719);
+}
+
+
+.userimg{
+    width: 50px;
+    height: 50px;
+
+    border-radius: 100%;
+}
+
+.replybox{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    border-style: solid;
+    border-width: 0px 0px 2px 0px;
+    border-color: rgba(224, 224, 224, 0.719);
+}
+
+.input{
+    height: 60px;
+    width: 75%;
+
+    border-style: none;
+
+    font-size: large;
+
+    text-indent: 10px;
+}
+
+.replybtn{
+
+    border-radius: 40px;
+
+    background-color: #0fb0f5;
+    color: white;
+}
+
+.dividend{
+    display: flex;
+    gap: 10px;
+
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.postoptionsbtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    background-color: rgba(255, 255, 255, 0);
+
+    width: fit-content;
+    height: 40px;
+}
+
+.postoptionsbtn>img{
+    width: 25px;
+    height: 25px;
+}
+
+.postoptions{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin: 20px 0px 20px 0px;
+
+    width: 50vw;
+}
+
+.input:focus{
+    outline: none;
+}
+
+.replybtn:focus{
+    outline: none;
+}
+
+.postoptionsbtn:hover{
+    border-style: none;
+    border-color: rgba(245, 222, 179, 0);
+
+    background-color: rgba(0, 0, 0, 0.096);
+}
+.postoptionsbtn:focus{
+    outline: none;
+}

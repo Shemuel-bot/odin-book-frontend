@@ -28,14 +28,17 @@ function TweetPage() {
         <>
             <div className={style.tweetbox}>
                 <img src={larry} className={style.img} alt="" />
-                <textarea name="" className={style.textarea} id='text' placeholder='Type here'></textarea>
+                <textarea name="" className={style.textarea} id='text' placeholder='Type here'>
+                    {localStorage.getItem('retweet')}
+                </textarea>
                 <button className={style.button} onClick={async () => {
                     const result = await clickHandler();
+                    localStorage.setItem('retweet', '')
                     if(result)
                         navigate('/feed')
                 }}>Tweet</button>
                 <Link to='/feed'>
-                <button className={style.button}>Cancel</button>
+                <button className={style.button} onClick={() => {localStorage.setItem('retweet', '')}}>Cancel</button>
                 </Link>
                 
             </div>

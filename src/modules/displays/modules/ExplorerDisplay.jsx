@@ -5,6 +5,7 @@ import comments from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/ch
 import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
 import style from "../css/ExplorerDisplay.module.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const likeHandler = async (id) => {
   await fetch(`http://localhost:3000/api/v1/posts/likes`, {
@@ -21,7 +22,6 @@ const likeHandler = async (id) => {
   });
 };
 
-
 const dislikeHandler = async (id) => {
   await fetch(`http://localhost:3000/api/v1/posts/dislikes`, {
     method: "post",
@@ -36,7 +36,6 @@ const dislikeHandler = async (id) => {
     console.log(err);
   });
 };
-
 
 const clickHandler = async (route) => {
   const results = await fetch(`http://localhost:3000/api/v1/posts/${route}`, {
@@ -56,19 +55,33 @@ const clickHandler = async (route) => {
             </div>
           </div>
           <div className={style.postoptions}>
-            <button className={style.postoptionsbtn}>
-              <img src={comments} alt="" />
-            </button>
-            <button className={style.postoptionsbtn}>
+            <Link to="/feed/comments">
+              <button
+                className={style.postoptionsbtn}
+                onClick={() => {
+                  localStorage.setItem("post", JSON.stringify(x));
+                  localStorage.setItem("userid", a.userid)
+                }}
+              >
+                <img src={comments} alt="" />
+              </button>
+            </Link>
+
+            <Link to='/post'>
+            <button className={style.postoptionsbtn} onClick={() => {
+              localStorage.setItem('retweet', x.text)
+            }}>
               <img src={retweet} alt="" />
             </button>
+            </Link>
 
             {x.likesId.includes(a.userid) ? (
               <button
                 className={style.postoptionsbtn}
                 onClick={async () => {
                   await dislikeHandler(x.id);
-                  x.likes += 1;
+                  x.likes -= 1
+                  x.likesId.splice(x.likesId.indexOf(a.userid), 1)
                   document.getElementById(x.id).src = heart;
                 }}
               >
@@ -80,6 +93,8 @@ const clickHandler = async (route) => {
                 className={style.postoptionsbtn}
                 onClick={async () => {
                   await likeHandler(x.id);
+                  x.likes += 1;
+                  x.likesId.push(a.userid)
                   document.getElementById(x.id).src = red_heart;
                 }}
               >

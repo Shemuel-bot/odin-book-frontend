@@ -9,7 +9,8 @@ function UserSearch() {
   
   useEffect(() => {
     fetch("http://localhost:3000/api/v1/users", {
-      method: 'get'
+      method: 'get',
+      headers: { Authorization: "Bearer " + localStorage.getItem("accessToken") }
     }).then(async res => {
       const a = await res.json();
       const ui = [];
