@@ -1,41 +1,7 @@
-import user from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/user.png";
-import red_heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/red_heart.png";
-import heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/heart.png";
-import comments from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/chat.png";
-import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
 import style from "../css/ExplorerDisplay.module.css";
+import Post from "../../Post";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
-const likeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/likes`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  }).catch((err) => {
-    console.log(err);
-  });
-};
-
-const dislikeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/dislikes`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  }).catch((err) => {
-    console.log(err);
-  });
-};
 
 const clickHandler = async (route) => {
   const results = await fetch(`http://localhost:3000/api/v1/posts/${route}`, {
@@ -46,64 +12,15 @@ const clickHandler = async (route) => {
     const ui = [];
     a.message.forEach((x) => {
       ui.push(
-        <div className={style.post}>
-          <div className={style.dividend}>
-            <img src={x.profile} alt="" className={style.userimg} />
-            <div>
-              <h4>{x.username}</h4>
-              <p>{x.text}</p>
-            </div>
-          </div>
-          <div className={style.postoptions}>
-            <Link to="/feed/comments">
-              <button
-                className={style.postoptionsbtn}
-                onClick={() => {
-                  localStorage.setItem("post", JSON.stringify(x));
-                  localStorage.setItem("userid", a.userid)
-                }}
-              >
-                <img src={comments} alt="" />
-              </button>
-            </Link>
-
-            <Link to='/post'>
-            <button className={style.postoptionsbtn} onClick={() => {
-              localStorage.setItem('retweet', x.text)
-            }}>
-              <img src={retweet} alt="" />
-            </button>
-            </Link>
-
-            {x.likesId.includes(a.userid) ? (
-              <button
-                className={style.postoptionsbtn}
-                onClick={async () => {
-                  await dislikeHandler(x.id);
-                  x.likes -= 1
-                  x.likesId.splice(x.likesId.indexOf(a.userid), 1)
-                  document.getElementById(x.id).src = heart;
-                }}
-              >
-                <img src={red_heart} id={x.id} alt="" />
-                {x.likes}
-              </button>
-            ) : (
-              <button
-                className={style.postoptionsbtn}
-                onClick={async () => {
-                  await likeHandler(x.id);
-                  x.likes += 1;
-                  x.likesId.push(a.userid)
-                  document.getElementById(x.id).src = red_heart;
-                }}
-              >
-                <img src={heart} id={x.id} alt="" />
-                {x.likes}
-              </button>
-            )}
-          </div>
-        </div>
+        <Post
+          id={x.id}
+          profile={x.profile}
+          username={x.username}
+          text={x.text}
+          likes={x.likes}
+          likesId={x.likesId}
+          userId={a.userId}
+        />
       );
     });
     return ui;

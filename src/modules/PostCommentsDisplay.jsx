@@ -60,7 +60,6 @@ function PostCommentsDisplay() {
   const [likes, setLikes] = useState(post.likes);
 
   useEffect(() => {
-    console.log(post);
     fetch("http://localhost:3000/api/v1/posts/comments", {
       method: "post",
       headers: { "Content-Type": "application/json" },

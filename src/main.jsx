@@ -10,6 +10,7 @@ import Notifications from "./modules/displays/modules/Notifications";
 import "./index.css";
 import TweetPage from "./modules/TweetPage";
 import PostCommentsDisplay from "./modules/PostCommentsDisplay";
+import ProfilePage from "./modules/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,8 @@ const router = createBrowserRouter([
         element: <ExplorerDisplay />,
       },
       { path: "notifications", element: <Notifications /> },
-      { path: "comments", element: <PostCommentsDisplay /> }
+      { path: "comments", element: <PostCommentsDisplay /> },
+      {path:  "myprofile", element: <ProfilePage />}
     ],
   },
   {
