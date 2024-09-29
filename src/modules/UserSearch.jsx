@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 function UserSearch() {
   const [people, setPeople] = useState([]);
+  const [following, setFollowing] = useState([])
 
   const searchClickHandler = () => {
     fetch(
@@ -37,11 +38,22 @@ function UserSearch() {
         if (x.img === "") {
           ui.push(<User profile={profile} username={x.userName} />);
         } else {
-          ui.push(<User profile={profile} username={x.userName} />);
+          ui.push(<User profile={x.img} username={x.userName} />);
         }
       });
       setPeople(ui);
     });
+
+    fetch("http://localhost:3000/api/v1/users/following", {
+      headers: { 'Authorization': 'Bearer ' + localStorage.getItem("accessToken")}
+    }).then(async res => {
+      const a = await res.json()
+      const ui = []
+      a.message.forEach(x => {
+        ui.push(<User profile={x.img} username={x.userName} id={x.id}/>)
+      })
+      setFollowing(ui)
+    })
   }, []);
 
   return (
@@ -77,10 +89,7 @@ function UserSearch() {
 
       <div className={style.people}>
         <h3>Folowing</h3>
-        <div className={style.userdiv}>
-          <img src={profile} alt="" className={style.icons} />
-          <h4 style={{ marginLeft: "5px", marginRight: "auto" }}>User</h4>
-        </div>
+        {following}
       </div>
     </div>
   );

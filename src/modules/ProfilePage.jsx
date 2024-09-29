@@ -103,7 +103,7 @@ function ProfilePage() {
       setUser(a.message);
     });
   }, []);
-
+  console.log(user)
   return (
     <div className={style.container}>
       <header className={style.header}>
@@ -144,8 +144,8 @@ function ProfilePage() {
           )}
 
           <div className={style.followinginfo}>
-            <h4>0 Following</h4>
-            <h4>0 Followers</h4>
+            <h4>{Array.isArray(user.following) ? user.following.length : 0} Following</h4>
+            <h4>{Array.isArray(user.followers) ? user.followers.length : 0} Followers</h4>
           </div>
         </div>
 

@@ -93,12 +93,16 @@
     color:#0fb0f5;
 }
 
-.searchbtn:focus{
-    outline: none;
-}
-
 .userdiv>button:hover{
     border-color: #0fb0f5;
+}
+
+.icons:hover{
+    cursor: pointer;
+}
+
+.searchbtn:focus{
+    outline: none;
 }
 
 .userdiv>button:focus{
