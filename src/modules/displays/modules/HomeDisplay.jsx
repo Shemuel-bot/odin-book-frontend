@@ -1,13 +1,14 @@
-import user from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/user.png";
-import heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/heart.png";
-import comments from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/chat.png";
-import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
+import Post from "../../Post.jsx";
 import style from "../css/HomeDisplay.module.css";
+import { useCallback, useEffect, useState } from "react";
 
 const clickHandler = async () => {
   const result = await fetch("http://localhost:3000/api/v1/posts", {
     method: "post",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("accessToken"),
+    },
     body: {
       text: document.getElementById("text").textContent,
       img: "",
@@ -20,13 +21,50 @@ const clickHandler = async () => {
 };
 
 function HomeDisplay() {
+  const [post, setPost] = useState([]);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/v1/posts/following", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    }).then(async (res) => {
+      const a = await res.json();
+      const ui = [];
+      a.message.forEach((x) => {
+        ui.push(
+          <Post
+            id={x.id}
+            profile={x.profile}
+            userId={a.userId}
+            username={x.username}
+            text={x.text}
+            likes={x.likes}
+            likesId={x.likesId}
+          />
+        );
+        setPost(ui);
+      });
+    });
+
+    fetch("http://localhost:3000/api/v1/user", {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    }).then(async (res) => {
+      const a = await res.json();
+      setUser(a.message);
+    });
+  }, []);
+
   return (
     <div className={style.container}>
       <header className={style.header}>
         <h2>Home</h2>
         <div className={style.tweetarea}>
           <div className={style.inputarea}>
-            <img src={user} alt="" className={style.userimg} />
+            <img src={user.img} alt="" className={style.userimg} />
             <input
               type="text"
               className={style.input}
@@ -45,33 +83,7 @@ function HomeDisplay() {
           </button>
         </div>
       </header>
-      <div className={style.postcontainer}>
-        <div className={style.post}>
-          <div className={style.dividend}>
-            <img src={user} alt="" className={style.userimg} />
-            <div>
-              <h4>User</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
-                fuga similique voluptas iusto tempora maiores nisi repellat
-                consequuntur possimus porro enim explicabo, ipsum nam mollitia
-                dolorem officiis ab aspernatur fugiat.
-              </p>
-            </div>
-          </div>
-          <div className={style.postoptions}>
-            <button className={style.postoptionsbtn}>
-              <img src={comments} alt="" />
-            </button>
-            <button className={style.postoptionsbtn}>
-              <img src={retweet} alt="" />
-            </button>
-            <button className={style.postoptionsbtn}>
-              <img src={heart} alt="" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <div className={style.postcontainer}>{post}</div>
     </div>
   );
 }

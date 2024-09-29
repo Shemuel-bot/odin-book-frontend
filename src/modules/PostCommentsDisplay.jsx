@@ -3,10 +3,9 @@ import red_heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/r
 import heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/heart.png";
 import comment from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/chat.png";
 import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
+import Comment from "./Comment";
 import { useEffect, useState } from "react";
 import style from "../css/PostCommentsDisplay.module.css";
-
-
 
 const likeHandler = async (id) => {
   await fetch(`http://localhost:3000/api/v1/posts/likes`, {
@@ -58,6 +57,7 @@ function PostCommentsDisplay() {
   const post = JSON.parse(localStorage.getItem("post"));
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
+  const [test, setTest] = useState([])
 
   useEffect(() => {
     fetch("http://localhost:3000/api/v1/posts/comments", {
@@ -85,7 +85,7 @@ function PostCommentsDisplay() {
   }, []);
 
   return (
-    <div>
+    <div id='container'>
       <div className={style.post}>
         <div className={style.dividend}>
           <img src={post.profile} alt="" className={style.userimg} />
@@ -107,7 +107,7 @@ function PostCommentsDisplay() {
               onClick={() => {
                 dislikeHandler(post.id);
                 document.getElementById(post.id).src = heart;
-                setLikes(likes - 1)
+                setLikes(likes - 1);
               }}
             >
               <img src={red_heart} id={post.id} alt="" />
@@ -119,7 +119,7 @@ function PostCommentsDisplay() {
               onClick={() => {
                 likeHandler(post.id);
                 document.getElementById(post.id).src = red_heart;
-                setLikes(likes + 1)
+                setLikes(likes + 1);
               }}
             >
               <img src={heart} id={post.id} alt="" />
@@ -138,8 +138,8 @@ function PostCommentsDisplay() {
         />
         <button
           className={style.replybtn}
-          onClick={() => {
-            replyHandler();
+          onClick={async () => {
+            await replyHandler();
           }}
         >
           <h4>Reply</h4>

@@ -53,7 +53,7 @@ function UserSearch() {
       </div>
 
       <div className={style.people}>
-        <h3>Friends</h3>
+        <h3>Folowing</h3>
         <div className={style.userdiv}>
           <img src={user} alt="" className={style.icons} />
           <h4 style={{marginLeft: "5px",marginRight: "auto"}}>User</h4>

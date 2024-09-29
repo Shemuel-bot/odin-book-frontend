@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import style from "../css/ProfilePage.module.css"
 
 function Comment({ profile, username, text}) {

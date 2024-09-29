@@ -53,17 +53,10 @@ function ExplorerDisplay() {
         >
           <h4>Latest</h4>
         </button>
-        <button
-          className={style.options}
-          onClick={async () => {
-            const result = await clickHandler("photos");
-            setPosts(result);
-          }}
-        >
-          <h4>Photos</h4>
-        </button>
       </header>
+      <div className={style.postcontainer}>
       {posts}
+      </div>
     </>
   );
 }

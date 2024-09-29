@@ -1,5 +1,6 @@
 .optionsdiv{
     display: flex;
+    justify-content: space-evenly;
 
     width: 100%;
     height: 10%;
@@ -93,6 +94,7 @@
 
 .postcontainer{
     height: 700px;
+    width: 100%;
     overflow-y: auto;
 }
 

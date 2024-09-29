@@ -48,7 +48,6 @@ function Post({ id, profile, username, text, likes, likesId, userId }) {
     likes: myLikes,
     likesId: myLikesId,
   };
-
   return (
     <div className={style.post}>
       <div className={style.dividend}>
