@@ -4,12 +4,12 @@ import house from "../assets/icons/home.png";
 import houseBlue from "../assets/icons/homeblue.png";
 import hashtag from "../assets/icons/hashtag.png";
 import bell from "../assets/icons/bell.png";
-import profile from "../assets/icons/user.png";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Modules() {
   const [user, setUser] = useState({});
+  const navigate = useNavigate()
 
   async function github() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +32,8 @@ function Modules() {
       },
     }).then(async (res) => {
       const a = await res.json();
-      console.log(a);
+      if(a.status === 403)
+        navigate('/')
       setUser(a.message);
     });
   }

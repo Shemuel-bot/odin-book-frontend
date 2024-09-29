@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 function UserSearch() {
   const [people, setPeople] = useState([]);
-  const [following, setFollowing] = useState([])
+  const [following, setFollowing] = useState([]);
 
   const searchClickHandler = () => {
     fetch(
@@ -19,7 +19,7 @@ function UserSearch() {
       const ui = [];
 
       a.message.forEach((x) => {
-        ui.push(<User profile={x.img} username={x.userName} id={x.id}/>);
+        ui.push(<User profile={x.img} username={x.userName} id={x.id} />);
       });
       setPeople(ui);
     });
@@ -36,24 +36,51 @@ function UserSearch() {
       const ui = [];
       a.message.forEach((x) => {
         if (x.img === "") {
-          ui.push(<User profile={profile} username={x.userName} />);
+          ui.push(
+            <User
+              profile={profile}
+              username={x.userName}
+              bio={x.bio}
+              followers={x.followers}
+              following={x.following}
+            />
+          );
         } else {
-          ui.push(<User profile={x.img} username={x.userName} />);
+          ui.push(
+            <User
+              profile={x.img}
+              username={x.userName}
+              bio={x.bio}
+              followers={x.followers}
+              following={x.following}
+            />
+          );
         }
       });
       setPeople(ui);
     });
 
     fetch("http://localhost:3000/api/v1/users/following", {
-      headers: { 'Authorization': 'Bearer ' + localStorage.getItem("accessToken")}
-    }).then(async res => {
-      const a = await res.json()
-      const ui = []
-      a.message.forEach(x => {
-        ui.push(<User profile={x.img} username={x.userName} id={x.id}/>)
-      })
-      setFollowing(ui)
-    })
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+    }).then(async (res) => {
+      const a = await res.json();
+      const ui = [];
+      a.message.forEach((x) => {
+        ui.push(
+          <User
+            profile={x.img}
+            username={x.userName}
+            id={x.id}
+            bio={x.bio}
+            followers={x.followers}
+            following={x.following}
+          />
+        );
+      });
+      setFollowing(ui);
+    });
   }, []);
 
   return (

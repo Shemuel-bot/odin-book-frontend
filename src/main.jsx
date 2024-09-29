@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
@@ -11,6 +10,7 @@ import "./index.css";
 import TweetPage from "./modules/TweetPage";
 import PostCommentsDisplay from "./modules/PostCommentsDisplay";
 import ProfilePage from "./modules/ProfilePage";
+import UsersProfilePage from "./modules/UsersProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +32,8 @@ const router = createBrowserRouter([
       },
       { path: "notifications", element: <Notifications /> },
       { path: "comments", element: <PostCommentsDisplay /> },
-      {path:  "myprofile", element: <ProfilePage />}
+      { path:  "myprofile", element: <ProfilePage />},
+      { path: "profile-page", element: <UsersProfilePage />}
     ],
   },
   {

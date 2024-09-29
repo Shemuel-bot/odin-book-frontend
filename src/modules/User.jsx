@@ -1,8 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import style from "../css/UserSearch.module.css";
+import { useNavigate } from "react-router-dom";
 
-function User({ profile, username, id }) {
+function User({ profile, username, id, bio, following, followers }) {
+  const navigate = useNavigate()
+
+  const profilePageClickHandler = () => {
+    localStorage.setItem("userProfile", JSON.stringify({
+      id: id,
+      profile: profile,
+      username: username,
+      bio: bio,
+      following: following,
+      followers: followers
+    }))
+    navigate('/feed/profile-page')
+  }
 
   const followClickHandler = async () => {
     await fetch("http://localhost:3000/api/v1/users/follow", {
@@ -65,7 +79,6 @@ function User({ profile, username, id }) {
       },
     }).then(async (res) => {
       const a = await res.json();
-      console.log(a)
       if (a.message.following.includes(id)) {
         setButton(
           <button
@@ -82,7 +95,7 @@ function User({ profile, username, id }) {
 
   return (
     <div className={style.userdiv}>
-      <img src={profile} alt="" className={style.icons} />
+      <img src={profile} alt="" className={style.icons} onClick={() => {profilePageClickHandler()}}/>
       <h4 style={{ marginLeft: "5px", marginRight: "auto" }}>{username}</h4>
       {button}
     </div>
