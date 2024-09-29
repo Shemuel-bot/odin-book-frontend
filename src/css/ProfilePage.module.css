@@ -28,9 +28,19 @@
 }
 
 .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background-color: #0fb0f5;
     color: white;
+
     border-radius: 40px;
+
+    font-size: medium;
+
+    width: 60px;
+    height: 30px;
 }
 
 .uibody{

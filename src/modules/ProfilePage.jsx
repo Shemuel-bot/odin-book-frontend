@@ -95,13 +95,13 @@ function ProfilePage() {
     <div className={style.container}>
       <header className={style.header}>
         <img src={user.img} alt="" className={style.profile} />
-        <button className={style.btn}>
-          <h4>Save</h4>
-        </button>
       </header>
       <div className={style.uibody}>
         <div className={style.info}>
-          <h2>{user.userName}</h2>
+          <h2>{user.userName} <button className={style.btn}>
+          <h4>Save</h4>
+        </button></h2>
+          
           <textarea
             className={style.textarea}
             spellCheck={false}

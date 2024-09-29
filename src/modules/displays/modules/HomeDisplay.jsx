@@ -1,6 +1,6 @@
 import Post from "../../Post.jsx";
 import style from "../css/HomeDisplay.module.css";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const clickHandler = async () => {
   const result = await fetch("http://localhost:3000/api/v1/posts", {
@@ -23,6 +23,8 @@ const clickHandler = async () => {
 function HomeDisplay() {
   const [post, setPost] = useState([]);
   const [user, setUser] = useState({});
+
+  
 
   useEffect(() => {
     fetch("http://localhost:3000/api/v1/posts/following", {
