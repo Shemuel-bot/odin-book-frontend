@@ -3,7 +3,7 @@ import style from "../css/HomeDisplay.module.css";
 import { useEffect, useState } from "react";
 
 const clickHandler = async () => {
-  const result = await fetch("http://localhost:3000/api/v1/posts", {
+  const result = await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts", {
     method: "post",
     headers: {
       "Content-Type": "application/json",

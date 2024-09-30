@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import style from "../css/PostCommentsDisplay.module.css";
 
 const likeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/likes`, {
+  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/likes`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const likeHandler = async (id) => {
 };
 
 const dislikeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/dislikes`, {
+  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/dislikes`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const dislikeHandler = async (id) => {
 const replyHandler = async () => {
   const post = JSON.parse(localStorage.getItem("post"));
 
-  await fetch("http://localhost:3000/api/v1/comments", {
+  await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/comments", {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -57,10 +57,9 @@ function PostCommentsDisplay() {
   const post = JSON.parse(localStorage.getItem("post"));
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
-  const [test, setTest] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/posts/comments", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/comments", {
       method: "post",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

@@ -13,7 +13,7 @@ function ProfilePage() {
   const [tweets, setTweets] = useState([]);
 
   const updateClickHandler = async () => {
-    fetch("http://localhost:3000/api/v1/users/update", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/update", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function ProfilePage() {
   };
 
   const tweetsClickHandler = async () => {
-    await fetch(`http://localhost:3000/api/v1/users/posts/${user.userName}`, {
+    await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/posts/${user.userName}`, {
       headers: { "Content-Type": "application/json" },
     })
       .then(async (res) => {
@@ -54,7 +54,7 @@ function ProfilePage() {
 
   const repliesClickHandler = async () => {
     await fetch(
-      `http://localhost:3000/api/v1/user/comments/${user.userName}`
+      `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user/comments/${user.userName}`
     ).then(async (res) => {
       const a = await res.json();
       console.log(a);
@@ -71,7 +71,7 @@ function ProfilePage() {
 
   const likedPostClickHandler = async () => {
     await fetch(
-      `http://localhost:3000/api/v1/user/posts/liked/${user.id}`
+      `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user/posts/liked/${user.id}`
     ).then(async (res) => {
       const a = await res.json();
       const ui = [];
@@ -93,7 +93,7 @@ function ProfilePage() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/user", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
@@ -103,7 +103,7 @@ function ProfilePage() {
       setUser(a.message);
     });
   }, []);
-  console.log(user)
+  
   return (
     <div className={style.container}>
       <header className={style.header}>

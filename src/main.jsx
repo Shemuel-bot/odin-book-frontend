@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
-import SignUp from "./modules/SignUp";
 import Home from "./modules/Home";
 import HomeDisplay from "./modules/displays/modules/HomeDisplay";
 import ExplorerDisplay from "./modules/displays/modules/ExplorerDisplay";
@@ -16,10 +15,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-  },
-  {
-    path: "sign-up",
-    element: <SignUp />,
   },
   {
     path: "feed",

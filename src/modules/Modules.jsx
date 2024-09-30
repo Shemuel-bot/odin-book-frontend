@@ -17,7 +17,7 @@ function Modules() {
 
     if (code) {
       // Send code to backend
-      await fetch("http://localhost:3000/api/v1/users/github/callback", {
+      await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/github/callback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ code }),
@@ -26,7 +26,7 @@ function Modules() {
         localStorage.setItem("accessToken", a.data.access_token);
       });
     }
-    await fetch("http://localhost:3000/api/v1/user", {
+    await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },

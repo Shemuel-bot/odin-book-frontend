@@ -11,7 +11,7 @@ function UserSearch() {
 
   const searchClickHandler = () => {
     fetch(
-      `http://localhost:3000/api/v1/users/search/${
+      `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/search/${
         document.getElementById("search").value
       }`
     ).then(async (res) => {
@@ -26,7 +26,7 @@ function UserSearch() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/users", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users", {
       method: "get",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),

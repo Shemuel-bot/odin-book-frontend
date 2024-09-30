@@ -12,7 +12,7 @@ function UsersProfilePage() {
   const [tweets, setTweets] = useState([]);
 
   const tweetsClickHandler = async (username) => {
-    await fetch(`http://localhost:3000/api/v1/users/posts/${username}`, {
+    await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/posts/${username}`, {
       headers: { "Content-Type": "application/json" },
     })
       .then(async (res) => {
@@ -40,7 +40,7 @@ function UsersProfilePage() {
 
   const repliesClickHandler = async (username) => {
     await fetch(
-      `http://localhost:3000/api/v1/user/comments/${username}`
+      `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user/comments/${username}`
     ).then(async (res) => {
       const a = await res.json();
       console.log(a);
@@ -57,7 +57,7 @@ function UsersProfilePage() {
 
   const likedPostClickHandler = async (id) => {
     await fetch(
-      `http://localhost:3000/api/v1/user/posts/liked/${id}`
+      `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user/posts/liked/${id}`
     ).then(async (res) => {
       const a = await res.json();
       const ui = [];

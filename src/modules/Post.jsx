@@ -8,7 +8,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const likeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/likes`, {
+  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/likes`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const likeHandler = async (id) => {
 };
 
 const dislikeHandler = async (id) => {
-  await fetch(`http://localhost:3000/api/v1/posts/dislikes`, {
+  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/dislikes`, {
     method: "post",
     headers: {
       "Content-Type": "application/json",

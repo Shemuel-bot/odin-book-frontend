@@ -1,10 +1,9 @@
 import style from "../css/ExplorerDisplay.module.css";
 import Post from "../../Post";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const clickHandler = async (route) => {
-  const results = await fetch(`http://localhost:3000/api/v1/posts/${route}`, {
+  const results = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
     method: "get",
     headers: { Authorization: "Bearer " + localStorage.getItem("accessToken") },
   }).then(async (res) => {

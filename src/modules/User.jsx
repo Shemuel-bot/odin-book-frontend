@@ -19,7 +19,7 @@ function User({ profile, username, id, bio, following, followers }) {
   }
 
   const followClickHandler = async () => {
-    await fetch("http://localhost:3000/api/v1/users/follow", {
+    await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/follow", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -40,8 +40,9 @@ function User({ profile, username, id, bio, following, followers }) {
       </button>
     );
   };
+
   const unFollowClickHandler = async () => {
-    await fetch("http://localhost:3000/api/v1/users/unfollow", {
+    await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/unfollow", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
@@ -62,6 +63,7 @@ function User({ profile, username, id, bio, following, followers }) {
       </button>
     );
   };
+
   const [button, setButton] = useState(
     <button
       onClick={() => {
@@ -73,7 +75,7 @@ function User({ profile, username, id, bio, following, followers }) {
   );
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/user", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
