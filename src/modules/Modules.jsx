@@ -2,7 +2,6 @@ import style from "../css/Modules.module.css";
 import larry from "../assets/logos/larry.png";
 import house from "../assets/icons/home.png";
 import hashtag from "../assets/icons/hashtag.png";
-import bell from "../assets/icons/bell.png";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -61,13 +60,6 @@ function Modules() {
           <button className={style.group}>
             <img src={hashtag} alt="" className={style.icon} />
             <h3>Explore</h3>
-          </button>
-        </Link>
-
-        <Link to="notifications">
-          <button className={style.group}>
-            <img src={bell} alt="" className={style.icon} />
-            <h3>Notifications</h3>
           </button>
         </Link>
         <Link to="myprofile">
