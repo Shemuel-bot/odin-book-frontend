@@ -32,6 +32,7 @@ function HomeDisplay() {
       },
     }).then(async (res) => {
       const a = await res.json();
+      console.log(a)
       const ui = [];
       a.message.forEach((x) => {
         ui.push(
