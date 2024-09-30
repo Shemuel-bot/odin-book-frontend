@@ -60,7 +60,7 @@ function UserSearch() {
       setPeople(ui);
     });
 
-    fetch("http://localhost:3000/api/v1/users/following", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/following", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },

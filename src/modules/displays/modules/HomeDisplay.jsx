@@ -9,10 +9,9 @@ const clickHandler = async () => {
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     },
-    body: {
+    body: JSON.stringify({
       text: document.getElementById("text").textContent,
-      img: "",
-    },
+    }),
   }).then(async (res) => {
     const a = await res.json();
     return a.message;
@@ -27,7 +26,7 @@ function HomeDisplay() {
   
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/v1/posts/following", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/following", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
@@ -50,7 +49,7 @@ function HomeDisplay() {
       });
     });
 
-    fetch("http://localhost:3000/api/v1/user", {
+    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
       headers: {
         Authorization: "Bearer " + localStorage.getItem("accessToken"),
       },
