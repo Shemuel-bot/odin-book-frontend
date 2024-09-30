@@ -1,7 +1,6 @@
 import style from "../css/Modules.module.css";
 import larry from "../assets/logos/larry.png";
 import house from "../assets/icons/home.png";
-import houseBlue from "../assets/icons/homeblue.png";
 import hashtag from "../assets/icons/hashtag.png";
 import bell from "../assets/icons/bell.png";
 import { useEffect, useState } from "react";
@@ -9,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Modules() {
   const [user, setUser] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function github() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -17,23 +16,28 @@ function Modules() {
 
     if (code) {
       // Send code to backend
-      await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/github/callback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      }).then(async (response) => {
+      await fetch(
+        "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/github/callback",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ code }),
+        }
+      ).then(async (response) => {
         const a = await response.json();
         localStorage.setItem("accessToken", a.data.access_token);
       });
     }
-    await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("accessToken"),
-      },
-    }).then(async (res) => {
+    await fetch(
+      "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      }
+    ).then(async (res) => {
       const a = await res.json();
-      if(a.status === 403)
-        navigate('/')
+      if (a.status === 403) navigate("/");
       setUser(a.message);
     });
   }
@@ -47,12 +51,7 @@ function Modules() {
       <img src={larry} alt="" className={style.logo} />
       <nav>
         <Link to="home">
-          <button
-            className={style.group}
-            onClick={() => {
-              document.getElementById("houseimg").src = houseBlue;
-            }}
-          >
+          <button className={style.group}>
             <img src={house} alt="" className={style.icon} />
             <h3>Home</h3>
           </button>

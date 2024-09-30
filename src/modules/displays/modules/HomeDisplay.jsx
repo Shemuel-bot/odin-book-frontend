@@ -10,7 +10,7 @@ const clickHandler = async () => {
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     },
     body: JSON.stringify({
-      text: document.getElementById("text").value,
+      text: document.getElementById("input").value,
     }),
   }).then(async (res) => {
     const a = await res.json();
