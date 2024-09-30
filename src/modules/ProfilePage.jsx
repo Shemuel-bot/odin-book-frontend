@@ -1,7 +1,4 @@
-// import profile from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/user.png";
-// import heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/heart.png";
-// import comments from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/chat.png";
-// import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
+
 import style from "../css/ProfilePage.module.css";
 import { useState } from "react";
 import { useEffect } from "react";

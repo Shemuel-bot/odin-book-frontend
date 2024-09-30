@@ -1,8 +1,8 @@
-import user from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/user.png";
-import red_heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/red_heart.png";
-import heart from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/heart.png";
-import comment from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/chat.png";
-import retweet from "/home/shemuel/repos/odin-book-frontend/src/assets/icons/reload.png";
+import user from "../assets/icons/user.png";
+import red_heart from "../assets/icons/red_heart.png";
+import heart from "../assets/icons/heart.png";
+import comment from "../assets/icons/chat.png";
+import retweet from "../assets/icons/reload.png";
 import Comment from "./Comment";
 import { useEffect, useState } from "react";
 import style from "../css/PostCommentsDisplay.module.css";
