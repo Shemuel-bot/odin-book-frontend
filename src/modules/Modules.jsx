@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Modules() {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
-  localStorage.setItem('user', JSON.stringify(user))
+  
   async function github() {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");
@@ -37,7 +37,8 @@ function Modules() {
     ).then(async (res) => {
       const a = await res.json();
       if (a.status === 403) navigate("/");
-      setUser(a.message);
+      localStorage.setItem('user', JSON.stringify(a.message))
+      setUser(a.message)
     });
   }
 
