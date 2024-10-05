@@ -97,7 +97,7 @@ function User({ profile, username, id, bio, following, followers }) {
 
   return (
     <div className={style.userdiv}>
-      <img src={profile} alt="" className={style.icons} onClick={() => {profilePageClickHandler()}}/>
+      <img src={profile} alt="" className={style.icons} onClick={() => {profilePageClickHandler(); location.reload()}}/>
       <h4 style={{ marginLeft: "5px", marginRight: "auto" }}>{username}</h4>
       {button}
     </div>

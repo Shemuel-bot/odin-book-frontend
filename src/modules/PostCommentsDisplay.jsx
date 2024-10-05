@@ -65,7 +65,7 @@ function PostCommentsDisplay() {
   const post = JSON.parse(localStorage.getItem("post"));
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
-  let thing = true 
+
   useEffect(() => {
     fetch(
       "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/comments",
@@ -86,7 +86,7 @@ function PostCommentsDisplay() {
       });
       setComments(ui);
     });
-  }, [thing]);
+  }, []);
 
   return (
     <div id="container">
@@ -144,7 +144,6 @@ function PostCommentsDisplay() {
           className={style.replybtn}
           onClick={async () => {
             await replyHandler();
-            thing ? thing = false : thing = true
           }}
         >
           <h4>Reply</h4>
