@@ -8,7 +8,7 @@ import { Link, useNavigate } from "react-router-dom";
 function Modules() {
   const [user, setUser] = useState({});
   const navigate = useNavigate();
-
+  localStorage.setItem('user', JSON.stringify(user))
   async function github() {
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get("code");

@@ -1,4 +1,3 @@
-import user from "../assets/icons/user.png";
 import red_heart from "../assets/icons/red_heart.png";
 import heart from "../assets/icons/heart.png";
 import comment from "../assets/icons/chat.png";
@@ -8,31 +7,37 @@ import { useEffect, useState } from "react";
 import style from "../css/PostCommentsDisplay.module.css";
 
 const likeHandler = async (id) => {
-  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/likes`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  }).catch((err) => {
+  await fetch(
+    `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/likes`,
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    }
+  ).catch((err) => {
     console.log(err);
   });
 };
 
 const dislikeHandler = async (id) => {
-  await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/dislikes`, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      id: id,
-    }),
-  }).catch((err) => {
+  await fetch(
+    `https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/dislikes`,
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({
+        id: id,
+      }),
+    }
+  ).catch((err) => {
     console.log(err);
   });
 };
@@ -40,43 +45,45 @@ const dislikeHandler = async (id) => {
 const replyHandler = async () => {
   const post = JSON.parse(localStorage.getItem("post"));
 
-  await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/comments", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      text: document.getElementById("reply").value,
-      postId: post.id,
-    }),
-  });
+  await fetch(
+    "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/comments",
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({
+        text: document.getElementById("reply").value,
+        postId: post.id,
+      }),
+    }
+  );
 };
 
 function PostCommentsDisplay() {
   const post = JSON.parse(localStorage.getItem("post"));
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
+  const [commentInstants, setCommentInstants] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/comments", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        id: post.id,
-      }),
-    }).then(async (res) => {
+    fetch(
+      "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/comments",
+      {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          id: post.id,
+        }),
+      }
+    ).then(async (res) => {
       const a = await res.json();
       const ui = [];
       a.message.forEach((x) => {
         ui.push(
-          <div className={style.dividend}>
-            <img src={x.profile} alt="" className={style.userimg} />
-            <div>
-              <h4>{x.username}</h4>
-              <p>{x.text}</p>
-            </div>
-          </div>
+          <Comment username={x.username} profile={x.profile} text={x.text} />
         );
       });
       setComments(ui);
@@ -84,7 +91,7 @@ function PostCommentsDisplay() {
   }, []);
 
   return (
-    <div id='container'>
+    <div id="container">
       <div className={style.post}>
         <div className={style.dividend}>
           <img src={post.profile} alt="" className={style.userimg} />
@@ -138,6 +145,15 @@ function PostCommentsDisplay() {
         <button
           className={style.replybtn}
           onClick={async () => {
+            const ui = commentInstants;
+            ui.push(
+              <Comment
+                profile={user.img}
+                username={user.userName}
+                text={document.getElementById("reply").value}
+              />
+            );
+            setCommentInstants(ui)
             await replyHandler();
           }}
         >
@@ -145,6 +161,7 @@ function PostCommentsDisplay() {
         </button>
       </div>
       {comments}
+      {commentInstants}
     </div>
   );
 }
