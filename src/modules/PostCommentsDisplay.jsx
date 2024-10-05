@@ -65,8 +65,6 @@ function PostCommentsDisplay() {
   const post = JSON.parse(localStorage.getItem("post"));
   const [comments, setComments] = useState([]);
   const [likes, setLikes] = useState(post.likes);
-  const [commentInstants, setCommentInstants] = useState([]);
-  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     fetch(
@@ -145,15 +143,6 @@ function PostCommentsDisplay() {
         <button
           className={style.replybtn}
           onClick={async () => {
-            const ui = commentInstants;
-            ui.push(
-              <Comment
-                profile={user.img}
-                username={user.userName}
-                text={document.getElementById("reply").value}
-              />
-            );
-            setCommentInstants(ui)
             await replyHandler();
           }}
         >
@@ -161,7 +150,6 @@ function PostCommentsDisplay() {
         </button>
       </div>
       {comments}
-      {commentInstants}
     </div>
   );
 }

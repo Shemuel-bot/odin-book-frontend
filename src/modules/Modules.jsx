@@ -37,7 +37,6 @@ function Modules() {
     ).then(async (res) => {
       const a = await res.json();
       if (a.status === 403) navigate("/");
-      localStorage.setItem('user', JSON.stringify(a.message))
       setUser(a.message)
     });
   }
