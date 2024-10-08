@@ -1,6 +1,6 @@
 import style from "../css/ExplorerDisplay.module.css";
 import Post from "../../Post";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const clickHandler = async (route) => {
   const results = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
@@ -9,7 +9,7 @@ const clickHandler = async (route) => {
   }).then(async (res) => {
     const a = await res.json();
     const ui = [];
-    a.message.forEach((x) => {
+    a.message.forEach(async (x) => {
       ui.push(
         <Post
           id={x.id}

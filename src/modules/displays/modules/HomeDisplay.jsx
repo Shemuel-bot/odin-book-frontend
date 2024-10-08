@@ -3,16 +3,19 @@ import style from "../css/HomeDisplay.module.css";
 import { useEffect, useState } from "react";
 
 const clickHandler = async () => {
-  const result = await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts", {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + localStorage.getItem("accessToken"),
-    },
-    body: JSON.stringify({
-      text: document.getElementById("input").value,
-    }),
-  }).then(async (res) => {
+  const result = await fetch(
+    "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts",
+    {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({
+        text: document.getElementById("input").value,
+      }),
+    }
+  ).then(async (res) => {
     const a = await res.json();
     return a.message;
   });
@@ -20,19 +23,20 @@ const clickHandler = async () => {
 };
 
 function HomeDisplay() {
-  const [post, setPost] = useState([]);
   const [user, setUser] = useState({});
-
-  
+  const [post, setPost] = useState([]);
 
   useEffect(() => {
-    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/following", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("accessToken"),
-      },
-    }).then(async (res) => {
+    fetch(
+      "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/following",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      }
+    ).then(async (res) => {
       const a = await res.json();
-      console.log(a)
+      console.log(a);
       const ui = [];
       a.message.forEach((x) => {
         ui.push(
@@ -50,11 +54,14 @@ function HomeDisplay() {
       });
     });
 
-    fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("accessToken"),
-      },
-    }).then(async (res) => {
+    fetch(
+      "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      }
+    ).then(async (res) => {
       const a = await res.json();
       setUser(a.message);
     });
@@ -79,6 +86,7 @@ function HomeDisplay() {
             onClick={async () => {
               const result = await clickHandler();
               if (result) document.getElementById("input").textContent = "";
+
             }}
           >
             <h4>Tweet</h4>
