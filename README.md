@@ -1,8 +1,7 @@
-# React + Vite
+# Odin Book Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend of a scaled down twitter app I made to display my frontend ability.
+It is not super big and does not contain every feature but, it was very fun to make.
 
-Currently, two official plugins are available:
+https://odin-book-frontend-eb98.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
