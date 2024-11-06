@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import style from "../css/UserSearch.module.css";
+import style from "../../css/UserSearch.module.css";
 import { useNavigate } from "react-router-dom";
 
 function User({ profile, username, id, bio, following, followers }) {
@@ -17,7 +17,7 @@ function User({ profile, username, id, bio, following, followers }) {
     }))
     navigate('/feed/profile-page')
   }
-
+  
   const followClickHandler = async () => {
     await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/follow", {
       method: "post",
@@ -28,6 +28,8 @@ function User({ profile, username, id, bio, following, followers }) {
       body: JSON.stringify({
         id: id,
       }),
+    }).catch(err => {
+      console.log(err)
     });
 
     setButton(
@@ -51,6 +53,8 @@ function User({ profile, username, id, bio, following, followers }) {
       body: JSON.stringify({
         id: id,
       }),
+    }).catch(err => {
+      console.log(err)
     });
 
     setButton(
@@ -92,6 +96,8 @@ function User({ profile, username, id, bio, following, followers }) {
           </button>
         );
       }
+    }).catch(err => {
+      console.log(err)
     });
   }, []);
 

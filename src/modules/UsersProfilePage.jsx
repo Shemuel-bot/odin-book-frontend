@@ -1,8 +1,8 @@
 
 import style from "../css/ProfilePage.module.css";
 import { useState } from "react";
-import Post from "./Post";
-import Comment from "./Comment";
+import Post from "./Components/Post";
+import Comment from "./Components/Comment";
 
 function UsersProfilePage() {
   const user = JSON.parse(localStorage.getItem("userProfile"))

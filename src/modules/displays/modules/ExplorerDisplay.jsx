@@ -1,5 +1,5 @@
 import style from "../css/ExplorerDisplay.module.css";
-import Post from "../../Post";
+import Post from "../../Components/Post"; 
 import { useState } from "react";
 
 const clickHandler = async (route) => {

@@ -2,7 +2,7 @@ import red_heart from "../assets/icons/red_heart.png";
 import heart from "../assets/icons/heart.png";
 import comment from "../assets/icons/chat.png";
 import retweet from "../assets/icons/reload.png";
-import Comment from "./Comment";
+import Comment from "./Components/Comment";
 import { useEffect, useState } from "react";
 import style from "../css/PostCommentsDisplay.module.css";
 

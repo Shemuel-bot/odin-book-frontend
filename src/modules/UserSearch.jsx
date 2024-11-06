@@ -2,7 +2,7 @@ import profile from "../assets/icons/user.png";
 import white_magnify from "../assets/icons/white_magnify.png";
 import magnify from "../assets/icons/magnify.png";
 import style from "../css/UserSearch.module.css";
-import User from "./User";
+import User from "./Components/User";
 import { useEffect, useState } from "react";
 
 function UserSearch() {
@@ -22,6 +22,8 @@ function UserSearch() {
         ui.push(<User profile={x.img} username={x.userName} id={x.id} />);
       });
       setPeople(ui);
+    }).catch(err => {
+      console.log(err)
     });
   };
 
@@ -43,6 +45,7 @@ function UserSearch() {
               bio={x.bio}
               followers={x.followers}
               following={x.following}
+              id={x.id}
             />
           );
         } else {
@@ -53,11 +56,14 @@ function UserSearch() {
               bio={x.bio}
               followers={x.followers}
               following={x.following}
+              id={x.id}
             />
           );
         }
       });
       setPeople(ui);
+    }).catch(err => {
+      console.log(err)
     });
 
     fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/following", {
@@ -80,7 +86,9 @@ function UserSearch() {
         );
       });
       setFollowing(ui);
-    });
+    }).catch(err => {
+      console.log(err)
+    });;
   }, []);
 
   return (

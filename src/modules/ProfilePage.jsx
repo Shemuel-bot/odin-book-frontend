@@ -2,8 +2,8 @@
 import style from "../css/ProfilePage.module.css";
 import { useState } from "react";
 import { useEffect } from "react";
-import Post from "./Post";
-import Comment from "./Comment";
+import Post from "./Components/Post";
+import Comment from "./Components/Comment";
 
 function ProfilePage() {
   const [user, setUser] = useState({});

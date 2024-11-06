@@ -1,4 +1,4 @@
-import Post from "../../Post.jsx";
+import Post from "../../Components/Post";
 import style from "../css/HomeDisplay.module.css";
 import { useEffect, useState } from "react";
 

@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import heart from "../assets/icons/heart.png";
-import red_heart from "../assets/icons/red_heart.png";
-import comments from "../assets/icons/chat.png";
-import retweet from "../assets/icons/reload.png";
-import style from "../css/ProfilePage.module.css";
+import heart from "../../assets/icons/heart.png";
+import red_heart from "../../assets/icons/red_heart.png";
+import comments from "../../assets/icons/chat.png";
+import retweet from "../../assets/icons/reload.png";
+import style from "../../css/ProfilePage.module.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
