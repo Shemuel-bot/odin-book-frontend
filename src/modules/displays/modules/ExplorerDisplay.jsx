@@ -1,6 +1,6 @@
 import style from "../css/ExplorerDisplay.module.css";
 import Post from "../../Post";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const clickHandler = async (route) => {
   const results = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
@@ -23,7 +23,9 @@ const clickHandler = async (route) => {
       );
     });
     return ui;
-  });
+  }).catch(err => {
+    console.log(err)
+  });;
 
   return results;
 };

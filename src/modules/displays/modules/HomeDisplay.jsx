@@ -18,7 +18,9 @@ const clickHandler = async () => {
   ).then(async (res) => {
     const a = await res.json();
     return a.message;
-  });
+  }).catch(err => {
+    console.log(err)
+  });;
   return result;
 };
 
@@ -52,7 +54,9 @@ function HomeDisplay() {
         );
         setPost(ui);
       });
-    });
+    }).catch(err => {
+      console.log(err)
+    });;
 
     fetch(
       "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user",
@@ -64,7 +68,9 @@ function HomeDisplay() {
     ).then(async (res) => {
       const a = await res.json();
       setUser(a.message);
-    });
+    }).catch(err => {
+      console.log(err)
+    });;
   }, []);
 
   return (

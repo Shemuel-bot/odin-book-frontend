@@ -49,6 +49,8 @@ function UsersProfilePage() {
       });
 
       setTweets(ui);
+    }).catch(err => {
+      console.log(err)
     });
   };
 
@@ -72,6 +74,8 @@ function UsersProfilePage() {
         );
       });
       setTweets(ui);
+    }).catch(err => {
+      console.log(err)
     });
   };
 
@@ -87,23 +91,17 @@ function UsersProfilePage() {
           </h2>
 
           {user.bio === "" ? (
-            <textarea
-              id="bio"
-              className={style.textarea}
-              spellCheck={false}
-              rows={3}
-              maxLength={160}
-              placeholder="Bio must be within 160 characters"
-            ></textarea>
+            <p
+            id="bio"
+            className={style.textarea}
+            spellCheck={false}
+          >No bio here</p>
           ) : (
-            <textarea
+            <p
               id="bio"
               className={style.textarea}
               spellCheck={false}
-              rows={3}
-              maxLength={160}
-              defaultValue={user.bio}
-            ></textarea>
+            >{user.bio}</p>
           )}
 
           <div className={style.followinginfo}>
