@@ -3,7 +3,7 @@ import github from "./assets/logos/github.png";
 import "./App.css";
 
 const clientID = "Ov23lihsmc3VBpj2YIWc"
-const redirectURI = "https://odin-book-frontend-eb98.vercel.app/feed"
+const redirectURI = "https://vigilant-giggle-jjjvjvg4wpr92j7q7-5173.app.github.dev/feed"
 
 function App() {
 
