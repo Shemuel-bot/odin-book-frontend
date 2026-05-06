@@ -38,8 +38,8 @@ const dislikeHandler = async (id) => {
 };
 
 function Post({ id, profile, username, text, likes, likesId, userId }) {
-  const [myLikes, setMyLikes] = useState(likes);
-  const [myLikesId, setMyLikesId] = useState(likesId);
+  const [myLikes, setMyLikes] = useState(likes ?? 0);
+  const [myLikesId, setMyLikesId] = useState(Array.isArray(likesId) ? likesId : []);
   const post = {
     id: id,
     profile: profile,
@@ -80,17 +80,16 @@ function Post({ id, profile, username, text, likes, likesId, userId }) {
           </button>
         </Link>
 
-        {myLikesId.includes(userId) ? (
+        {Array.isArray(myLikesId) && myLikesId.includes(userId) ? (
           <button
             className={style.postoptionsbtn}
             onClick={() => {
-              const a = myLikesId;
-              a.splice(a.indexOf(userId), 1);
+              const a = myLikesId.filter((likeId) => likeId !== userId);
 
               dislikeHandler(id);
               document.getElementById(id).src = heart;
 
-              setMyLikes(myLikes - 1);
+              setMyLikes((prev) => Math.max(prev - 1, 0));
               setMyLikesId(a);
             }}
           >
@@ -101,13 +100,12 @@ function Post({ id, profile, username, text, likes, likesId, userId }) {
           <button
             className={style.postoptionsbtn}
             onClick={() => {
-              const a = myLikesId;
-              a.push(userId);
+              const a = [...(myLikesId ?? []), userId];
 
               likeHandler(id);
               document.getElementById(id).src = red_heart;
 
-              setMyLikes(myLikes + 1);
+              setMyLikes((prev) => prev + 1);
               setMyLikesId(a);
             }}
           >
