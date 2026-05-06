@@ -7,15 +7,17 @@ function User({ profile, username, id, bio, following, followers }) {
   const navigate = useNavigate()
 
   const profilePageClickHandler = () => {
-    localStorage.setItem("userProfile", JSON.stringify({
+    const profileData = {
       id: id,
       profile: profile,
       username: username,
       bio: bio,
       following: following,
-      followers: followers
-    }))
-    navigate('/feed/profile-page')
+      followers: followers,
+    };
+
+    localStorage.setItem("userProfile", JSON.stringify(profileData));
+    navigate("/feed/profile-page", { state: { userProfile: profileData } });
   }
   
   const followClickHandler = async () => {
@@ -103,7 +105,7 @@ function User({ profile, username, id, bio, following, followers }) {
 
   return (
     <div className={style.userdiv}>
-      <img src={profile} alt="" className={style.icons} onClick={() => {profilePageClickHandler(); location.reload()}}/>
+      <img src={profile} alt="" className={style.icons} onClick={() => {profilePageClickHandler();}}/>
       <h4 style={{ marginLeft: "5px", marginRight: "auto" }}>{username}</h4>
       {button}
     </div>

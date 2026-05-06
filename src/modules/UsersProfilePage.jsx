@@ -1,11 +1,14 @@
 
 import style from "../css/ProfilePage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Post from "./Components/Post";
 import Comment from "./Components/Comment";
 
 function UsersProfilePage() {
-  const user = JSON.parse(localStorage.getItem("userProfile"))
+  const location = useLocation();
+  const initialUser = location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile"));
+  const [user, setUser] = useState(initialUser);
   const [tweets, setTweets] = useState([]);
 
   const tweetsClickHandler = async (username) => {
@@ -78,6 +81,10 @@ function UsersProfilePage() {
       console.log(err)
     });
   };
+
+  useEffect(() => {
+    setUser(location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile")));
+  }, [location.state]);
 
   return (
     <div className={style.container}>

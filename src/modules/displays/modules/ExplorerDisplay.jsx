@@ -38,7 +38,6 @@ function ExplorerDisplay() {
   useEffect(() => {
     if (section === "latest") {
       clickHandler("latest").then((result) => {
-        console.log(result);
         setPosts(result);
       });
     }
