@@ -8,6 +8,7 @@ import Comment from "./Components/Comment";
 function UsersProfilePage() {
   const location = useLocation();
   const [user, setUser] = useState(() => location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile")));
+  const [isFollowing, setIsFollowing] = useState(0);
   const [section, setSection] = useState("tweets");
   const [tweets, setTweets] = useState([]);
 
@@ -82,14 +83,36 @@ function UsersProfilePage() {
     });
   };
 
+  const checkIfFollowing = async (profileId) => {
+    try {
+      const res = await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user", {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      });
+      const a = await res.json();
+      setIsFollowing(a.message.following.includes(profileId));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     const nextUser = location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile"));
     setUser(nextUser);
+  }, [location.state]);
 
-    if (section === "tweets" && nextUser?.username) {
-      tweetsClickHandler(nextUser.username);
+  useEffect(() => {
+    if (!user?.id) return;
+
+    checkIfFollowing(user.id);
+  }, [user]);
+
+  useEffect(() => {
+    if (section === "tweets" && user?.username) {
+      tweetsClickHandler(user.username);
     }
-  }, [location.state, section]);
+  }, [user, section]);
 
   return (
     <div className={style.container}>
@@ -106,7 +129,7 @@ function UsersProfilePage() {
                     updateClickHandler();
                   }}
               >
-              <h4>Follow</h4>
+              <h4>{isFollowing ? "Unfollow" : "Follow"}</h4>
             </button>
           </h2>
 
