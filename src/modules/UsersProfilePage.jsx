@@ -7,8 +7,8 @@ import Comment from "./Components/Comment";
 
 function UsersProfilePage() {
   const location = useLocation();
-  const initialUser = location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile"));
-  const [user, setUser] = useState(initialUser);
+  const [user, setUser] = useState(() => location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile")));
+  const [section, setSection] = useState("tweets");
   const [tweets, setTweets] = useState([]);
 
   const tweetsClickHandler = async (username) => {
@@ -83,8 +83,13 @@ function UsersProfilePage() {
   };
 
   useEffect(() => {
-    setUser(location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile")));
-  }, [location.state]);
+    const nextUser = location.state?.userProfile ?? JSON.parse(localStorage.getItem("userProfile"));
+    setUser(nextUser);
+
+    if (section === "tweets" && nextUser?.username) {
+      tweetsClickHandler(nextUser.username);
+    }
+  }, [location.state, section]);
 
   return (
     <div className={style.container}>
@@ -95,6 +100,14 @@ function UsersProfilePage() {
         <div className={style.info}>
           <h2>
             {user.username}
+            <button
+                className={style.btn}
+                  onClick={() => {
+                    updateClickHandler();
+                  }}
+              >
+              <h4>Follow</h4>
+            </button>
           </h2>
 
           {user.bio === "" ? (
