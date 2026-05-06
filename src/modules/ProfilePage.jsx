@@ -8,6 +8,7 @@ import Comment from "./Components/Comment";
 function ProfilePage() {
   const [user, setUser] = useState({});
   const [tweets, setTweets] = useState([]);
+  const [section, setSection] = useState("tweets");
 
   const updateClickHandler = async () => {
     fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/update", {
@@ -43,6 +44,7 @@ function ProfilePage() {
           );
         });
         setTweets(ui);
+        setSection("tweets");
       })
       .catch((err) => {
         console.log(err);
@@ -61,7 +63,7 @@ function ProfilePage() {
           <Comment profile={x.profile} username={x.username} text={x.text} />
         );
       });
-
+      setSection("replies");
       setTweets(ui);
     });
   };
@@ -85,6 +87,7 @@ function ProfilePage() {
           />
         );
       });
+      setSection("likes");
       setTweets(ui);
     });
   };
@@ -100,7 +103,14 @@ function ProfilePage() {
       setUser(a.message);
     });
   }, []);
-  
+
+ 
+  useEffect(() => {
+    if (section === "tweets") {
+      tweetsClickHandler();
+    }
+  }, [user]);
+
   return (
     <div className={style.container}>
       <header className={style.header}>
@@ -127,7 +137,7 @@ function ProfilePage() {
               spellCheck={false}
               rows={3}
               maxLength={160}
-              placeholder="Bio must be within 160 characters"
+              placeholder="Type your bio here..."
             ></textarea>
           ) : (
             <textarea
