@@ -2,9 +2,16 @@ import Modules from "./Modules";
 import ModuleDisplay from "./ModuleDisplay";
 import UserSearch from "./UserSearch";
 import style from "../css/Home.module.css";
+import { useEffect } from "react";
 
 function Home() {
-    
+  
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      window.location.href = "/";
+    }
+  }, []);
+
   return (
     <>
       <div className={style.body}>
