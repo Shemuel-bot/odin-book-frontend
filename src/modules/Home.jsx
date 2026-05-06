@@ -7,7 +7,7 @@ import { useEffect } from "react";
 function Home() {
   
   useEffect(() => {
-    if (!localStorage.getItem("accessToken")) {
+    if (!localStorage.getItem("accessToken") && !localStorage.getItem("userid")) {
       window.location.href = "/";
     }
   }, []);

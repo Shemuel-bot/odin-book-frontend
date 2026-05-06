@@ -104,12 +104,12 @@ function ProfilePage() {
     });
   }, []);
 
- 
   useEffect(() => {
     if (section === "tweets") {
       tweetsClickHandler();
     }
-  }, [user]);
+  }, []);
+ 
 
   return (
     <div className={style.container}>

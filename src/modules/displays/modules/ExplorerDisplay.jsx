@@ -1,6 +1,7 @@
 import style from "../css/ExplorerDisplay.module.css";
 import Post from "../../Components/Post"; 
 import { useState } from "react";
+import { useEffect } from "react";
 
 const clickHandler = async (route) => {
   const results = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
@@ -32,6 +33,16 @@ const clickHandler = async (route) => {
 
 function ExplorerDisplay() {
   const [posts, setPosts] = useState([]);
+  const [section, setSection] = useState("latest");
+
+  useEffect(() => {
+    if (section === "latest") {
+      clickHandler("latest").then((result) => {
+        console.log(result);
+        setPosts(result);
+      });
+    }
+  }, [section]);
 
   return (
     <>
