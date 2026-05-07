@@ -2,7 +2,7 @@ body{
     display: flex;
     justify-content: center;
 
-    background-color: #0ca0df;
+    background-color: #d6d6d64d;
 }
 
 .button{
@@ -13,27 +13,40 @@ body{
 }
 
 .img{
-    width: 43px;
-    height: 40px;
+    font-size: 30px;
+    
+    margin-left: 20px;
 }
 
 .textarea {
-    width: 300px;
+    width: 375px;
     height: 150px;
     resize: none;
+    
+    background-color: rgb(255, 255, 255);
+}
 
-    background-color: aliceblue;
+.textbox img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.textbox{
+    display: flex;
+    gap: 10px;
+    margin: 20px;
 }
 
 .tweetbox{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: start;
     gap: 10px;
 
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 300px;
 
     background-color: white;
     

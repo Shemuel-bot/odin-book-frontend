@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
 import larry from "../assets/logos/larry.png";
 import style from "../css/TweetPage.module.css";
 
@@ -26,11 +27,32 @@ const clickHandler = async () => {
 
 function TweetPage() {
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
 
+   async function github() {
+    await fetch(
+      "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/user",
+      {
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      }
+    ).then(async (res) => {
+      const a = await res.json();
+      if (a.status === 403) navigate("/");
+      setUser(a.message)
+    });
+  }
+
+  useState(() => {
+    github();
+  }, []);
   return (
     <>
       <div className={style.tweetbox}>
-        <img src={larry} className={style.img} alt="" />
+        <p className={style.img}>x</p>
+        <div className={style.textbox}>
+          <img src={user.img} alt="" />
         <textarea
           name=""
           className={style.textarea}
@@ -39,26 +61,7 @@ function TweetPage() {
         >
           {localStorage.getItem("retweet")}
         </textarea>
-        <button
-          className={style.button}
-          onClick={async () => {
-            const result = await clickHandler();
-            localStorage.setItem("retweet", "");
-            if (result) navigate("/feed");
-          }}
-        >
-          Tweet
-        </button>
-        <Link to="/feed">
-          <button
-            className={style.button}
-            onClick={() => {
-              localStorage.setItem("retweet", "");
-            }}
-          >
-            Cancel
-          </button>
-        </Link>
+        </div>
       </div>
     </>
   );
