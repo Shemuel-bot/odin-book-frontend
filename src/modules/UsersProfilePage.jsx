@@ -12,6 +12,31 @@ function UsersProfilePage() {
   const [section, setSection] = useState("tweets");
   const [tweets, setTweets] = useState([]);
 
+  const updateClickHandler = async () => {
+    const url = isFollowing
+      ? "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/unfollow"
+      : "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/follow";
+
+    const response = await fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + localStorage.getItem("accessToken"),
+      },
+      body: JSON.stringify({
+        id: user.id,
+      }),
+    }).catch((err) => {
+      console.log(err);
+    });
+
+    if (!response || !response.ok) return;
+
+    setIsFollowing((prev) => !prev);
+  };
+
+  
+
   const tweetsClickHandler = async (username) => {
     await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/posts/${username}`, {
       headers: { "Content-Type": "application/json" },

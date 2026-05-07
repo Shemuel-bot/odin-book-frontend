@@ -91,7 +91,7 @@ function HomeDisplay() {
             className={style.tweetBtn}
             onClick={async () => {
               const result = await clickHandler();
-              if (result) document.getElementById("input").textContent = "";
+              if (result) document.getElementById("input").value = "";
 
             }}
           >

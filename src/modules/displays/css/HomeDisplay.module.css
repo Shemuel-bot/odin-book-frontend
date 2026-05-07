@@ -30,8 +30,9 @@
 
 .tweetarea{
     display: flex;
-    flex-direction: column;  
-    gap: 10px;
+    flex-direction: row;  
+    justify-content: space-between;
+    align-items: center;
 
     margin-left: 10px;
 
@@ -48,7 +49,7 @@
 
     border-radius: 30px;
 
-    margin-left: 80%;
+    margin-right: 20px;
 
     background-color: #0fb0f5;
     color: white;
@@ -57,6 +58,9 @@
 .inputarea{
     display: flex;
     align-items: center;
+    width: 90%;
+
+    margin-bottom: 20px;
     gap: 20px;
 }
 
