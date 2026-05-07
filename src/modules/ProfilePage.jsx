@@ -10,6 +10,13 @@ function ProfilePage() {
   const [tweets, setTweets] = useState([]);
   const [section, setSection] = useState("tweets");
 
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      window.location.href = "/";
+    }
+  }, []);
+
+
   const updateClickHandler = async () => {
     fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/update", {
       method: "post",
