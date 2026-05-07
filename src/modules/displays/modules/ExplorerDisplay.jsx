@@ -3,70 +3,65 @@ import Post from "../../Components/Post";
 import { useState } from "react";
 import { useEffect } from "react";
 
-const clickHandler = async (route) => {
-  const results = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
-    method: "get",
-    headers: { Authorization: "Bearer " + localStorage.getItem("accessToken") },
-  }).then(async (res) => {
-    const a = await res.json();
-    const ui = [];
-    a.message.forEach(async (x) => {
-      ui.push(
-        <Post
-          id={x.id}
-          profile={x.profile}
-          username={x.username}
-          text={x.text}
-          likes={x.likes}
-          likesId={x.likesId}
-          userId={a.userId}
-        />
-      );
+const fetchPosts = async (route) => {
+  try {
+    const res = await fetch(`https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/posts/${route}`, {
+      method: "get",
+      headers: { Authorization: "Bearer " + localStorage.getItem("accessToken") },
     });
-    return ui;
-  }).catch(err => {
-    console.log(err)
-  });;
-
-  return results;
+    const data = await res.json();
+    return { posts: data.message, userId: data.userId };
+  } catch (err) {
+    console.log(err);
+    return { posts: [], userId: null };
+  }
 };
 
 function ExplorerDisplay() {
-  const [posts, setPosts] = useState([]);
+  const [postData, setPostData] = useState([]);
+  const [userId, setUserId] = useState(null);
   const [section, setSection] = useState("latest");
 
+  const loadPosts = async (route) => {
+    const { posts, userId: fetchedUserId } = await fetchPosts(route);
+    setPostData(posts);
+    setUserId(fetchedUserId);
+    setSection(route);
+  };
+
   useEffect(() => {
-    if (section === "latest") {
-      clickHandler("latest").then((result) => {
-        setPosts(result);
-      });
-    }
-  }, [section]);
+    loadPosts("latest");
+  }, []);
 
   return (
     <>
       <header className={style.optionsdiv}>
         <button
           className={style.options}
-          onClick={async () => {
-            const result = await clickHandler("top");
-            setPosts(result);
-          }}
+          onClick={() => loadPosts("top")}
         >
           <h4>Top</h4>
         </button>
         <button
           className={style.options}
-          onClick={async () => {
-            const result = await clickHandler("latest");
-            setPosts(result);
-          }}
+          onClick={() => loadPosts("latest")}
         >
           <h4>Latest</h4>
         </button>
       </header>
       <div className={style.postcontainer}>
-      {posts}
+        {postData.map((post) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            profile={post.profile}
+            username={post.username}
+            text={post.text}
+            likes={post.likes}
+            likesId={post.likesId}
+            userId={userId}
+          />
+        ))}
       </div>
     </>
   );

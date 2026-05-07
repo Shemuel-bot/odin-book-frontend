@@ -80,13 +80,13 @@ function PostCommentsDisplay() {
       const a = await res.json();
       const ui = [];
       a.message.forEach((x) => {
-        ui.push(
+        ui.unshift(
           <Comment username={x.username} profile={x.profile} text={x.text} />
         );
       });
       setComments(ui);
     });
-  }, []);
+  }, [comments]);
 
   return (
     <div id="container">
@@ -144,6 +144,7 @@ function PostCommentsDisplay() {
           className={style.replybtn}
           onClick={async () => {
             await replyHandler();
+            setComments([document.getElementById("reply").value, ...comments]);
           }}
         >
           <h4>Reply</h4>

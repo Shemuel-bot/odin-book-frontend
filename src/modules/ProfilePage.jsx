@@ -105,10 +105,10 @@ function ProfilePage() {
   }, []);
 
   useEffect(() => {
-    if (section == "tweets") {
+    if (section === "tweets") {
       tweetsClickHandler();
     }
-  }, [section]);
+  }, [section, user]);
  
 
   return (
