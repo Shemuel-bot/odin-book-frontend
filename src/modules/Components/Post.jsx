@@ -69,16 +69,6 @@ function Post({ id, profile, username, text, likes, likesId, userId }) {
             <img src={comments} alt="" />
           </button>
         </Link>
-        <Link to="/post">
-          <button
-            className={style.postoptionsbtn}
-            onClick={() => {
-              localStorage.setItem("retweet", text);
-            }}
-          >
-            <img src={retweet} alt="" />
-          </button>
-        </Link>
 
         {Array.isArray(myLikesId) && myLikesId.includes(userId) ? (
           <button

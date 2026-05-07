@@ -117,30 +117,7 @@ function UserSearch() {
 
   return (
     <div className={style.body}>
-      <div className={style.searchbox}>
-        <img src={magnify} alt="" className={style.magnify} />
-        <input
-          type="text"
-          className={style.input}
-          placeholder="Search for users"
-          id="search"
-        />
-        <button
-          className={style.searchbtn}
-          onClick={() => {
-            searchClickHandler();
-          }}
-        >
-          <img
-            src={white_magnify}
-            alt=""
-            style={{
-              width: "20px",
-              height: "20px",
-            }}
-          />
-        </button>
-      </div>
+      
       <div className={style.people}>
         <h3>Discover People</h3>
         {people.map((user) => (

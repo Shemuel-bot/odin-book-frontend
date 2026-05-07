@@ -102,9 +102,6 @@ function PostCommentsDisplay() {
           <button className={style.postoptionsbtn}>
             <img src={comment} alt="" />
           </button>
-          <button className={style.postoptionsbtn}>
-            <img src={retweet} alt="" />
-          </button>
           {post.likesId.includes(Number(localStorage.getItem("userid"))) ? (
             <button
               className={style.postoptionsbtn}
@@ -145,6 +142,7 @@ function PostCommentsDisplay() {
           onClick={async () => {
             await replyHandler();
             setComments([document.getElementById("reply").value, ...comments]);
+            document.getElementById("reply").value = "";
           }}
         >
           <h4>Reply</h4>
