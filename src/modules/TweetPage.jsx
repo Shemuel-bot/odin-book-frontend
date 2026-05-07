@@ -50,7 +50,7 @@ function TweetPage() {
   return (
     <>
       <div className={style.tweetbox}>
-        <p className={style.img}>x</p>
+        <button className={style.img}>x</button>
         <div className={style.textbox}>
           <img src={user.img} alt="" />
         <textarea
@@ -62,6 +62,10 @@ function TweetPage() {
           {localStorage.getItem("retweet")}
         </textarea>
         </div>
+
+      <button className={style.tweetbtn} onClick={clickHandler}>
+        Post
+      </button>
       </div>
     </>
   );
