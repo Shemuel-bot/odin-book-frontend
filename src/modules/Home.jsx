@@ -10,6 +10,24 @@ function Home() {
 
   useEffect( () => {
     async function checkToken() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get("code");
+
+      if (code) {
+        // Send code to backend
+        await fetch(
+          "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/github/callback",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ code }),
+          }
+        ).then(async (response) => {
+          const a = await response.json();
+          localStorage.setItem("accessToken", a.data.access_token);
+        });
+      }
+
       await fetch("https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/me", {
         method: "GET",
         headers: {
