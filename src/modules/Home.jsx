@@ -36,12 +36,11 @@ function Home() {
         },
       }).then(async res => {
         const a = await res.json();
-        console.log(a);
         if(a.value === false)
           navigate('/')
       }).catch(err => {
         console.log(err);
-        navigate('/')
+        //navigate('/')
       })
     }
     checkToken();
