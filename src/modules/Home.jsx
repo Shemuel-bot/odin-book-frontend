@@ -13,7 +13,7 @@ function Home() {
       const urlParams = new URLSearchParams(window.location.search);
       const code = urlParams.get("code");
 
-      if (code) {
+      if (code && !localStorage.getItem("accessToken")) {
         // Send code to backend
         await fetch(
           "https://greasy-sallie-panda-bear-studios-863963ff.koyeb.app/api/v1/users/github/callback",
