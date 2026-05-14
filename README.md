@@ -7,7 +7,7 @@
 </div>
 
 
-https://odin-book-frontend-rho.vercel.app/
+https://twitter-clone-rho33.vercel.app
 ## About
 <div align="center">
   <img src="src/assets/screen-shot.png">
